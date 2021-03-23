@@ -1,0 +1,75 @@
+<!-- http://api.openweathermap.org/data/2.5/weather?q=Mumbai&appid=0e036e5337b3bb59003e0e20a17062d3 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://kit.fontawesome.com/9e5e7f7077.js" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="style.css">
+    <title>Weather App</title>
+</head>
+<body>
+    <div class="box">
+        <div class="wave-one"></div>
+        <div class="wave-two"></div>
+        <div class="wave-three"></div>
+        <div id="weathercon">
+            <i class="fas fa-sun" style="color: #eccc68;"></i>
+        </div>
+        <div class="info">
+            <h2 class="location"><i class="fas fa-street-view"style="color: #fff;"></i>{%location%},{%country%}</h2>
+            <p id="date">WED | OCT 23 |10:49AM</p>
+            <h1 class="temp">{%tempval%}</h1>
+            <h3 class="tempmin_max">Min {%tempmin%} | Max {%tempmax%}</h3>
+        </div>
+    </div>
+<script>
+   const curDate=document.getElementById("date");
+   const weathercon=document.getElementById("weathercon");
+   const tempStatus="Clouds";
+   const getCurrentDay=()=>
+   {
+    var weekday = new Array(7);
+    weekday[0] = "Sunday";
+    weekday[1] = "Monday";
+    weekday[2] = "Tuesday";
+    weekday[3] = "Wednesday";
+    weekday[4] = "Thursday";
+    weekday[5] = "Friday";
+    weekday[6] = "Saturday";
+       let currentTime= new Date();
+     return(weekday[currentTime.getDay()]);
+   };
+   const getCurrentTime=()=>
+   {var months = new Array();
+months[0] = "January";
+months[1] = "February";
+months[2] = "March";
+months[3] = "April";
+months[4] = "May";
+months[5] = "June";
+months[6] = "July";
+months[7] = "August";
+months[8] = "September";
+months[9] = "October";
+months[10] = "November";
+months[11] = "December";
+       var now =new Date();
+       var month =now.getMonth();
+       var day=now.getDate();
+       
+       var hours=now.getHours();
+       let mins=now.getMinutes();
+      let period="AM";
+      period = hours >= 12 ? 'pm' : 'am';
+hours = hours % 12;
+  hours = hours ? hours : 12; // the hour '0' should be '12'
+ mins = mins < 10 ? '0'+mins : mins;
+ 
+
+       return("| " + months[month] + " " + day + " |  " + hours + ":" + mins + period );
+   };
+    curDate.innerHTML=getCurrentDay()+" "+getCurrentTime();
+</script>
+</body>
+</html>
